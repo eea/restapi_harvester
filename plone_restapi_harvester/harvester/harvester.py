@@ -123,4 +123,4 @@ def harvest_document(document):
     for block in block_list:
         if block.get('@type') in KNOWN_BLOCK_DATA_TYPES:
             data.update(extract_data(block))
-    return data
+    return json.dump(data)
