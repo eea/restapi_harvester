@@ -1,0 +1,3 @@
+[console_scripts]
+harvester = plone_restapi_harvester.cli.cli:main
+
