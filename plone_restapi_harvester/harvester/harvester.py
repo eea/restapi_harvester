@@ -107,7 +107,7 @@ def extract_metadata_from_api(document):
     metadata_endpoint = document.get("@components", {}).get("@metadata", {}).get("@id")
     mapping_response = metadata_endpoint and requests.get(metadata_endpoint)
     if mapping_response is not None and mapping_response.status_code == 200:
-        for k, v in mapping_response.json():
+        for k,v in mapping_response.json().get('items', {}):
             normalized_data[k] = document.get(v)
     return normalized_data
 
