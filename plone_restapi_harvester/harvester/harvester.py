@@ -18,29 +18,6 @@ def load_document(document_loader, document_id):
     return json.loads(raw_doc)
 
 
-def get_blocks_list(data):
-    """ get all available blocks in a given JSON provided Plone REST API. Return a list of blocks """
-    blocks_to_return = []
-    if "blocks" in data:
-        blocks = data.get("blocks")
-        if isinstance(blocks, dict):
-            # when blocks is a dict, each dict item represents a different block
-            # so we return it and inspect if it has additional blocks
-            for key, block in blocks.items():
-                blocks_to_return.append(block)
-
-            blocks_to_return.extend(get_blocks(block))
-
-        elif isinstance(blocks, list):
-            # when blocks is a list, each item is in itself a block
-            for block in blocks:
-                blocks_to_return.append(block)
-
-            blocks_to_return.extend(get_blocks(block))
-
-    return blocks_to_return
-
-
 def get_blocks_from_dict(block):
     yield block
 
@@ -59,7 +36,7 @@ def get_blocks(data):
                 for key, block in blocks.items():
                     yield from get_blocks_from_dict(block)
 
-                yield from get_blocks(block)
+                yield from get_blocks(blocks)
 
             elif isinstance(blocks, list):
                 # when blocks is a list, each item is in itself a block
@@ -126,4 +103,4 @@ def harvest_document(document):
     for block in block_list:
         if block.get("@type") in KNOWN_BLOCK_DATA_TYPES:
             data.update(extract_data(block))
-    return json.dump(data)
+    return json.dumps(data)
