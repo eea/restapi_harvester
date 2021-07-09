@@ -69,22 +69,24 @@ def get_blocks(data):
 
                 yield from get_blocks(block)
 
+
 def extract_data(block):
     """
     Check block for known types of data
     """
     normalized_data = {}
-    mappings = KNOWN_BLOCK_DATA_TYPES.get(block.get('@type'), {}).get('mappings')
-    metadata = KNOWN_BLOCK_DATA_TYPES.get(block.get('@type'), {}).get('metadata')
+    mappings = KNOWN_BLOCK_DATA_TYPES.get(block.get("@type"), {}).get("mappings")
+    metadata = KNOWN_BLOCK_DATA_TYPES.get(block.get("@type"), {}).get("metadata")
     for mapping in mappings:
-        if mapping.get('mapTo'):
+        if mapping.get("mapTo"):
             current = normalized_data.get(metadata, {})
-            current[mapping.get('mapTo')] = block.get(mapping.get('key'),'')
+            current[mapping.get("mapTo")] = block.get(mapping.get("key"), "")
             normalized_data[metadata] = current
         else:
-            normalized_data[metadata] = block.get(mapping.get('key'),'')
+            normalized_data[metadata] = block.get(mapping.get("key"), "")
     return normalized_data
-    
+
+
 def get_default_data(document):
     """
     Extract default plone content type metadata
@@ -108,9 +110,10 @@ def extract_metadata_from_api(document):
     metadata_endpoint = document.get("@components", {}).get("@metadata", {}).get("@id")
     mapping_response = metadata_endpoint and requests.get(metadata_endpoint)
     if mapping_response is not None and mapping_response.status_code == 200:
-        for k,v in mapping_response.json().get('items', {}):
+        for k, v in mapping_response.json().get("items", {}):
             normalized_data[k] = document.get(v)
     return normalized_data
+
 
 def harvest_document(document):
     """
@@ -122,6 +125,6 @@ def harvest_document(document):
     data.update(extract_metadata_from_api(document))
     block_list = get_blocks(document)
     for block in block_list:
-        if block.get('@type') in KNOWN_BLOCK_DATA_TYPES:
+        if block.get("@type") in KNOWN_BLOCK_DATA_TYPES:
             data.update(extract_data(block))
     return json.dump(data)
