@@ -92,11 +92,12 @@ def get_default_data(document):
     normalized_data = {}
     normalized_data["title"] = document.get("title")
     normalized_data["description"] = document.get("description")
-    normalized_data["abstract"] = document.get("abstract")
+    normalized_data["abstract"] = document.get("description")
     normalized_data["created"] = document.get("creation_date")
     normalized_data["published"] = document.get("effectiveDate")
     normalized_data["expires"] = document.get("expirationDate")
     return normalized_data
+
 
 def extract_metadata_from_api(document):
     """
