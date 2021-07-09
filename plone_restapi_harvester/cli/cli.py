@@ -1,19 +1,28 @@
 import click
-import sys
 from plone_restapi_harvester.harvester.harvester import load_document, harvest_document
-from plone_restapi_harvester.loaders.loaders import FSLoader, PostgresLoader
+from plone_restapi_harvester.loaders.loaders import FSLoader
+
 
 @click.command()
-@click.option('--loader', type=click.Choice(['fs', 'db']), default='fs')
-@click.argument('id')
-def main(id, loader):
-    if loader == 'db':
-        document_loader = PostgresLoader()
-    else:
-        document_loader = FSLoader() 
-    normalized =  harvest_document(load_document(document_loader, id))    
-    # pass data to the next airflow step
+@click.argument(
+    "input",
+    type=click.Path(exists=True),
+)
+@click.option(
+    "--output",
+    type=click.Path(exists=False),
+)
+def main(input, output):
+    document_loader = FSLoader()
+    normalized = harvest_document(load_document(document_loader, input))
 
-if __name__ == '__main__':
-    #sys.exit(main())  # pragma: no cover
+    if output is not None:
+        with open(output, "w") as fp:
+            fp.write(normalized)
+    else:
+        print(normalized)
+
+
+if __name__ == "__main__":
+    # sys.exit(main())  # pragma: no cover
     main()
