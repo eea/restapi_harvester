@@ -84,7 +84,7 @@ def extract_metadata_from_api(document):
     it explicitely doing an additional query
     """
     normalized_data = {}
-    metadata_endpoint = document.get("@components", {}).get("@metadata", {})
+    metadata_endpoint = document.get("@components", {}).get("metadata", {})
     normalized_data = metadata_endpoint.get("items", {})
     if "@id" in normalized_data:
         del normalized_data["@id"]
