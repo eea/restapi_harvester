@@ -11,8 +11,8 @@ It uses a three-way strategy to harvest the data from Plone's REST API.
 1. Extract the known metadata directly from known attributes
 
 Some core metadata are saved under known attributes name in Plone. As Plone REST API provides
-all attributes of a given Plone page in its response, this harvesters extracts the following
-know attributes directly from there:
+all attributes of a given Plone page in its response, this harvester extracts the following
+known attributes directly from there:
 
 
 +------------++-----------------+
@@ -48,7 +48,7 @@ some specific Volto block types to expose some metadata without requiring the Pl
 developers to expose that information through the REST API.
 
 The harvester extracts the metadata present in some already known Volto block types
-and exposes them to the indexer. Right know, only the values of *eeametadata/geocoverage*
+and exposes them to the indexer. Right now, only the values of *eeametadata/geocoverage*
 block types are taken into account, but more can be included in the future.
 
 
