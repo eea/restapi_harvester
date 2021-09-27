@@ -15,7 +15,7 @@ all attributes of a given Plone page in its response, this harvester extracts th
 known attributes directly from there:
 
 
-+---------------++-----------------+
++---------------++----------------+
 | Metadata      | Plone attribute |
 +===============+=================+
 | title         | description     |
