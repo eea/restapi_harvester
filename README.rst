@@ -18,7 +18,7 @@ known attributes directly from there:
 +---------------++----------------+
 | Metadata      | Plone attribute |
 +===============+=================+
-| title         | description     |
+| title         | title     |
 +---------------+-----------------+
 | description   | description     |
 +---------------+-----------------+
