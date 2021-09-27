@@ -71,9 +71,9 @@ def get_default_data(document):
     normalized_data["title"] = document.get("title")
     normalized_data["description"] = document.get("description")
     normalized_data["abstract"] = document.get("description")
-    normalized_data["created"] = document.get("creation_date")
-    normalized_data["published"] = document.get("effectiveDate")
-    normalized_data["expires"] = document.get("expirationDate")
+    normalized_data["created"] = document.get("created")
+    normalized_data["published"] = document.get("effective")
+    normalized_data["expires"] = document.get("expires")
     return normalized_data
 
 

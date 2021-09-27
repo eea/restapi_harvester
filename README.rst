@@ -24,11 +24,11 @@ known attributes directly from there:
 +-------------+-----------------+
 | abstract    | description     |
 +-------------+-----------------+
-| created     | creation_date   |
+| created     | created         |
 +-------------+-----------------+
-| published   | effectiveDate   |
+| published   | effective       |
 +-------------+-----------------+
-| expires     | expirationDate  |
+| expires     | expires         |
 +-------------+-----------------+
 
 
