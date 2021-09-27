@@ -15,22 +15,29 @@ all attributes of a given Plone page in its response, this harvester extracts th
 known attributes directly from there:
 
 
-+------------++-----------------+
-| Metadata    | Plone attribute |
-+=============+=================+
-| title       | description     |
-+-------------+-----------------+
-| description | description     |
-+-------------+-----------------+
-| abstract    | description     |
-+-------------+-----------------+
-| created     | created         |
-+-------------+-----------------+
-| published   | effective       |
-+-------------+-----------------+
-| expires     | expires         |
-+-------------+-----------------+
++---------------++-----------------+
+| Metadata      | Plone attribute |
++===============+=================+
+| title         | description     |
++---------------+-----------------+
+| description   | description     |
++---------------+-----------------+
+| abstract      | description     |
++---------------+-----------------+
+| created       | created         |
++---------------+-----------------+
+| published     | effective       |
++---------------+-----------------+
+| expires       | expires         |
++---------------+-----------------+
+| modified      | modified        |
++---------------+-----------------+
+| absolute_url  | N/A (*)         |
++---------------+-----------------+
+| UID           | UID             |
++---------------+-----------------+
 
+(*) The absolute_url is not a proper Plone attribute, but it's calculated through the REST API.
 
 2. Extract all metadata from the @metadata endpoint
 

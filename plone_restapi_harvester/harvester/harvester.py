@@ -74,6 +74,10 @@ def get_default_data(document):
     normalized_data["created"] = document.get("created")
     normalized_data["published"] = document.get("effective")
     normalized_data["expires"] = document.get("expires")
+    normalized_data["modified"] = document.get("modified")
+    normalized_data["absolute_url"] = document.get("@id")
+    normalized_data["UID"] = document.get("UID")
+    normalized_data["type"] = document.get("@type")
     return normalized_data
 
 
